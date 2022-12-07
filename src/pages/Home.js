@@ -13,7 +13,8 @@ const Home = () => {
     const formData = Object.fromEntries(data);
     const uid = Date.now().toString(36) + Math.random().toString(36).substr(2);
     formData.uid = uid;
-    const url = "http://localhost:5000/cashplanetpat5670/api/v1/admin/url";
+    const url =
+      "https://link-black.vercel.app/cashplanetpat5670/api/v1/admin/url";
     // const { amount, name, VPA_UPI, payment_method } = formProps;
     const requestOptions = {
       method: "POST",
@@ -26,15 +27,15 @@ const Home = () => {
         setLoading(false);
         let url;
         if (formData?.payment_method === "Cash Planet") {
-          url = `http://localhost:5000/cashplanetpat5670/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
+          url = `https://link-black.vercel.app/cashplanetpat5670/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
         } else {
-          url = `http://localhost:5000/kistloanpayment14980/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
+          url = `https://link-black.vercel.app/kistloanpayment14980/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
         }
         setUrl(url);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(!loading);
+        setLoading(false);
       });
   };
 
