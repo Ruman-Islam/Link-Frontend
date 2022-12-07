@@ -6,10 +6,14 @@
   flex-direction: column;
   justify-content: center;
   padding: 5px;
+  background-color: #dedddd;
 }
 
 .main-container {
   max-width: 430px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px #c8d0d8;
 }
 .main-container input {
   padding: 5px;
@@ -30,7 +34,7 @@
   display: flex;
   flex-direction: column;
   padding: 15px;
-  border: 1px solid #3f72ac;
+  /* border: 1px solid #3f72ac; */
 }
 
 .input-box {
@@ -61,7 +65,7 @@
 
 .link-box {
   line-break: anywhere;
-  padding: 5px;
+  padding: 15px;
   /* border: 1px solid #3f72ac; */
 }
 .link-box a:first-child {

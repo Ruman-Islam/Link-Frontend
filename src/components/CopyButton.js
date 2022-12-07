@@ -14,7 +14,7 @@ const CopyButton = ({ url }) => {
         <CopyToClipboard text={url} onCopy={() => setStatus(true)}>
           <button>Copy</button>
         </CopyToClipboard>
-        {status && <p style={{ color: "red" }}> Copied!!!</p>}
+        {status && <p style={{ color: "red" }}> copied!!!</p>}
       </div>
     </div>
   );
