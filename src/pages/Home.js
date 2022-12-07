@@ -4,39 +4,46 @@ import "../styles/Home.css";
 
 const Home = () => {
   const [url, setUrl] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const generate_url = (e) => {
-    setLoading(!loading);
     e.preventDefault();
     const data = new FormData(e.target);
     const formData = Object.fromEntries(data);
-    const uid = Date.now().toString(36) + Math.random().toString(36).substr(2);
-    formData.uid = uid;
-    const url =
-      "https://link-black.vercel.app/cashplanetpat5670/api/v1/admin/url";
-    // const { amount, name, VPA_UPI, payment_method } = formProps;
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    };
-    fetch(url, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        setLoading(false);
-        let url;
-        if (formData?.payment_method === "Cash Planet") {
-          url = `https://link-black.vercel.app/cashplanetpat5670/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
-        } else {
-          url = `https://link-black.vercel.app/kistloanpayment14980/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
-        }
-        setUrl(url);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
+    const { amount, name, vpa_upi } = formData;
+    if (amount === " " || name === " " || vpa_upi === " ") {
+      setError("Empty field/whitespace not accepted");
+    } else {
+      setLoading(true);
+      setError("");
+      const uid =
+        Date.now().toString(36) + Math.random().toString(36).substr(2);
+      formData.uid = uid;
+      const url =
+        "https://link-black.vercel.app/cashplanetpat5670/api/v1/admin/url";
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      };
+      fetch(url, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          setLoading(false);
+          let url;
+          if (formData?.payment_method === "Cash Planet") {
+            url = `https://link-black.vercel.app/cashplanetpat5670/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
+          } else {
+            url = `https://link-black.vercel.app/kistloanpayment14980/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
+          }
+          setUrl(url);
+        })
+        .catch((err) => {
+          setError("Please try again!");
+          setLoading(false);
+        });
+    }
   };
 
   return (
@@ -49,15 +56,15 @@ const Home = () => {
           <br />
           <div className="input-box">
             <label>Amount:</label>
-            <input type="number" name="amount" />
+            <input required type="number" name="amount" />
           </div>
           <div className="input-box">
             <label>Name:</label>
-            <input type="text" name="name" />
+            <input required type="text" name="name" />
           </div>
           <div className="input-box">
             <label>VPA/UPI:</label>
-            <input type="text" name="vpa_upi" />
+            <input required type="text" name="vpa_upi" />
           </div>
           <div className="input-box">
             <label htmlFor="payment-method">Select method:</label>
@@ -67,10 +74,16 @@ const Home = () => {
             </select>
           </div>
           <div className="input-box">
-            <input className="generate-button" type="submit" value="Generate" />
+            <input
+              disabled={!!url}
+              className={`${url ? "not-allowed" : "generate-button"}`}
+              type="submit"
+              value="Generate"
+            />
           </div>
         </form>
-        <br />
+        {/* <br /> */}
+        {error && <p className="error-msg">{error}</p>}
         {loading && <div className="loader"></div>}
         {url && <CopyButton url={url} />}
       </div>
