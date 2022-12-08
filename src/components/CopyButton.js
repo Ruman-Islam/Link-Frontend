@@ -6,15 +6,11 @@ const CopyButton = ({ url }) => {
 
   return (
     <div className="link-box">
-      <a target="_blank" href={url} rel="noreferrer">
-        {url}
-      </a>
-      <br />
       <div className="copy-btn">
         <CopyToClipboard text={url} onCopy={() => setStatus(true)}>
           <button>Copy</button>
         </CopyToClipboard>
-        {status && <p style={{ color: "red" }}> copied!!!</p>}
+        {status && <small>copied!</small>}
       </div>
     </div>
   );
