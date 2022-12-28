@@ -69,6 +69,59 @@ ul {
   font: 18px/1.5 "Open Sans", sans-serif;
 }
 
+.main-container {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 5px;
+}
+
+.analytics {
+  background-color: var(--bodyColor);
+  min-width: 300px;
+}
+
+.analytics-header {
+  background-color: #000000;
+  padding: 10px;
+  margin: 15px 0 20px;
+  display: flex;
+}
+.analytics-header img {
+  width: 25px;
+}
+
+.analytics-header h1 {
+  color: var(--white);
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.analytics-body {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.analytics-body-right,
+.analytics-body-left {
+  flex: 1;
+}
+
+.analytics-stats-box {
+  background-color: #0000003a;
+  padding: 10px;
+  margin-bottom: 5px;
+  color: white;
+  border-radius: 5px;
+}
+.analytics-stats-box p {
+  font-size: 1.5rem;
+}
+.analytics-stats-box small {
+  color: var(--white);
+}
+
 .copy-btn small {
   margin-left: 10px;
 }
@@ -99,7 +152,7 @@ ul {
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 0.8rem 1.5rem 1.5rem 1.5rem;
 }
 
 /* FORM ELEMENTS
@@ -354,6 +407,10 @@ footer span {
     left: 25px;
     bottom: 50px;
   }
+
+  .main-container {
+    flex-direction: row;
+  }
 }
 
 @media screen and (min-width: 541px) {
@@ -373,5 +430,9 @@ footer span {
     position: absolute;
     left: 25px;
     bottom: 50px;
+  }
+
+  .main-container {
+    flex-direction: row;
   }
 }

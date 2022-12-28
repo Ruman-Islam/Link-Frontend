@@ -21,7 +21,7 @@ const Home = () => {
         Date.now().toString(36) + Math.random().toString(36).substr(2);
       formData.uid = uid;
       const url =
-        "https://link-black.vercel.app/cashplanetpat5670/api/v1/admin/url";
+        "https://link-black.vercel.app/cashplanet/api/v1/admin/url";
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -33,9 +33,9 @@ const Home = () => {
           setLoading(false);
           let url;
           if (formData?.payment_method === "Cash Planet") {
-            url = `https://link-black.vercel.app/cashplanetpat5670/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
+            url = `https://link-black.vercel.app/cashplanet/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
           } else {
-            url = `https://link-black.vercel.app/kistloanpayment14980/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
+            url = `https://link-black.vercel.app/kistloanpayment/api/v1/admin/specific_url?uid=${data?.data?.uid}`;
           }
           setUrl(url);
         })
