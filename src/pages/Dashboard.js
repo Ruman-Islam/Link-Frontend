@@ -21,13 +21,24 @@ const Dashboard = () => {
     const data = new FormData(e.target);
     const formData = Object.fromEntries(data);
     formData.amount = +formData.amount;
-    const { amount, name, vpa_upi,pm } = formData;
-    if (!amount || isNaN(amount) || name === " " || vpa_upi === " " || pm === " ") {
+    const { amount, name, vpa_upi, pm } = formData;
+    if (
+      !amount ||
+      isNaN(amount) ||
+      name === " " ||
+      vpa_upi === " " ||
+      pm === " "
+    ) {
       setError("Whitespace or zero not accepted");
     } else {
+      if (pm.includes(" ")) {
+        const splittedPm = pm.split(" ");
+        const payment_method = splittedPm[0] + "_" + splittedPm[1];
+        formData.pm = payment_method;
+      }
       setLoading(true);
       setError("");
-      const url = 'https://link-black.vercel.app/api/v1/admin/url';
+      const url = "https://link-black.vercel.app/api/v1/admin/url";
       // const url = 'http://localhost:5000/api/v1/admin/url';
       const requestOptions = {
         method: "POST",
