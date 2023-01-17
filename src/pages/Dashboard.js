@@ -137,7 +137,7 @@ const Dashboard = () => {
                   <textarea
                     defaultValue={url}
                     placeholder="Link will be shown here"
-                    disabled
+                    readonly='readonly'
                   ></textarea>
                 </li>
 
