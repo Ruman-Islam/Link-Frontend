@@ -168,7 +168,6 @@ ul {
 
 .my-form select,
 .my-form input,
-.my-form textarea,
 .my-form button {
   font-size: 16px;
   width: 100%;
@@ -182,6 +181,7 @@ ul {
 }
 
 .my-form textarea {
+  color: yellow;
   height: 170px;
 }
 .my-form textarea::placeholder {
