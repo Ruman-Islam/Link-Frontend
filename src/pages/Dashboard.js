@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import CopyButton from "../components/CopyButton";
 import icon from "../assets/images/generate.png";
 import menu from "../assets/images/menuicon.png";
-import "../styles/Dashboard.css";
 import TargetChart from "../components/TargetChart";
+import "../styles/Dashboard.css";
 
 const Dashboard = () => {
   const [url, setUrl] = useState("");
@@ -21,13 +21,14 @@ const Dashboard = () => {
     const data = new FormData(e.target);
     const formData = Object.fromEntries(data);
     formData.amount = +formData.amount;
-    const { amount, name, vpa_upi } = formData;
-    if (!amount || isNaN(amount) || name === " " || vpa_upi === " ") {
+    const { amount, name, vpa_upi,pm } = formData;
+    if (!amount || isNaN(amount) || name === " " || vpa_upi === " " || pm === " ") {
       setError("Whitespace or zero not accepted");
     } else {
       setLoading(true);
       setError("");
       const url = 'https://link-black.vercel.app/api/v1/admin/url';
+      // const url = 'http://localhost:5000/api/v1/admin/url';
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -106,12 +107,19 @@ const Dashboard = () => {
                       required
                       autoComplete="off"
                     />
-                    <select name="payment_method">
+                    <input
+                      type="text"
+                      placeholder="Payment method"
+                      name="pm"
+                      required
+                      autoComplete="off"
+                    />
+                    {/* <select name="payment_method">
                       <option disabled>-- Choose a method --</option>
                       <option value="Cash Planet">Cash Planet</option>
                       <option value="Kistloan Payment">Kistloan Payment</option>
                       <option value="RupeeStar">RupeeStar</option>
-                    </select>
+                    </select> */}
                   </div>
                 </li>
                 <li>
