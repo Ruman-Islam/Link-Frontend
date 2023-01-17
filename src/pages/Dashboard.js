@@ -120,7 +120,7 @@ const Dashboard = () => {
                     />
                     <input
                       type="text"
-                      placeholder="Payment method"
+                      placeholder="Method"
                       name="pm"
                       required
                       autoComplete="off"
